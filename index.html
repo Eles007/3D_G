@@ -1,0 +1,46 @@
+﻿<html>
+<head>
+    <title>3D</title>
+    <meta charset="utf-8" />
+    <link href='css/style.css' rel='stylesheet'/>
+    <script src='js/graph3D/entities/Point.js'></script>
+    <script src='js/graph3D/entities/Edge.js'></script>
+    <script src='js/graph3D/entities/Polygon.js'></script>
+    <script src='js/graph3D/entities/Subject.js'></script>
+    <script src='js/graph3D/entities/Light.js'></script>
+
+
+    <script src='js/graph3D/Surfaces/Surfaces.js'></script>
+    <script src='js/graph3D/Surfaces/cube.js'></script>
+    <script src='js/graph3D/Surfaces/bublik.js'></script>
+    <script src='js/graph3D/Surfaces/sphera.js'></script>
+    <script src='js/graph3D/Surfaces/elipsoid.js'></script>
+    <script src='js/graph3D/Surfaces/conus.js'></script>
+    <script src='js/graph3D/Surfaces/cilidr.js'></script>
+    <script src='js/graph3D/Surfaces/parcilidr.js'></script>
+    <script src='js/graph3D/Surfaces/gipcilidr.js'></script>
+    <script src='js/graph3D/Surfaces/odnopolostgiperParaboloid.js'></script>
+    <script src='js/graph3D/Surfaces/hyperbolicParaboloid.js'></script>
+    <script src='js/graph3D/Surfaces/elepticheskiyParaboloid.js'></script>
+    <script src='js/graph3D/Surfaces/dvuhpolostniyhiperbolicParaboloid.js'></script>
+
+    
+    <script src='js/graph3D/Math3D.js'></script>
+    <script src='js/graph3D/Graph3D.js'></script>
+    <script src='js/Canvas/Canvas.js'></script>
+    <script src='js/main.js'></script>
+    <script src='js/ui/UI.js'></script>
+
+
+</head>
+<body>
+     <div id = "razmetka" >
+     <label><input type="checkbox" class = "option-input checkbox" id='printPoints'>Точки</label><br>
+     <label><input type="checkbox" class = "option-input checkbox" id='printEdges' >Ребра</label><br>
+     <label><input type="checkbox" class = "option-input checkbox" id='printPolygons'>Полигоны</label>
+     </div>
+     <div id = "razmetka1">
+         <canvas id = "canvas"></canvas>
+     </div>
+</body>
+</html>
