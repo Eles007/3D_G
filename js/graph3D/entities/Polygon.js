@@ -5,6 +5,8 @@ class Polygon{
         this.distance = 0;
         this.lumen = 1; 
         this.visible = true;
+
+        this.center = new Point; // вычисляемый центр полигона
     }
 
     hexToRgb(hex) {

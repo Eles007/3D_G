@@ -34,7 +34,7 @@ window.onload = function () {
     const SCENE = [
         //солнце
         sur.sphera(
-            40,
+            30,
             10,
             new Point(0, 0, 0),
             '#FFD700',
@@ -43,7 +43,7 @@ window.onload = function () {
         
         //меркурий
         sur.sphera(
-            40,
+            30,
             0.5,
             new Point(-15, 0, 0),
             '#808080',
@@ -51,7 +51,7 @@ window.onload = function () {
         ),
         //венера
         sur.sphera(
-            40,
+            30,
             1,
             new Point(25, 0, 0),
             '#FFFFF0',
@@ -59,7 +59,7 @@ window.onload = function () {
         ),
         //земля
         sur.sphera(
-            40,
+            30,
             2,
             new Point(0, 25, 0),
             '#4169E1',
@@ -67,7 +67,7 @@ window.onload = function () {
         ),
         //марс
         sur.sphera(
-            40,
+            30,
             0.75,
             new Point(20, 30, 0),
             '#FF6347',
@@ -75,7 +75,7 @@ window.onload = function () {
         ),
         //юпитер
         sur.sphera(
-            40,
+            30,
             7,
             new Point(-35, 40, 0),
             '#F0E68C',
@@ -83,7 +83,7 @@ window.onload = function () {
         ),
         //кольцо
         sur.bublik(
-            40,
+            30,
             12,
             new Point(41, -64),
             '#8B4513',
@@ -91,7 +91,7 @@ window.onload = function () {
         ),
         //сатурн
         sur.sphera(
-            40,
+            30,
             5,
             new Point(41, -64, 0),
             '#FFEFD5',
@@ -99,7 +99,7 @@ window.onload = function () {
         ),
         //уран
         sur.sphera(
-            40,
+            30,
             4,
             new Point(-62, -87, 0),
             '#1E90FF',
@@ -107,15 +107,15 @@ window.onload = function () {
         ),
         //нептун
         sur.sphera(
-            40,
+            30,
             3.5,
             new Point(97, -14, 0),
             '#0000FF',
             { rotateOz: new Point(0, 0, 0) }
         ),
-        //земля
+        //луна
         sur.sphera(
-            40,
+            30,
             0.2,
             new Point(1, 27, -3),
             '#4169E1',
@@ -123,7 +123,7 @@ window.onload = function () {
         )
         
     ];
-    const LIGHT = new Light(0, 0, 0, 60); //источник света
+    const LIGHT = new Light(-100, 2, -10, 150000); //источник света
 
     let canRotate = 0;
     let canPrint = {
@@ -213,11 +213,13 @@ window.onload = function () {
             const polygons = [];
 
             SCENE.forEach(subject => {
-                // graph3D.calcGorner(subject, WINDOW.CAMERA);
-
+                graph3D.calcGorner(subject, WINDOW.CAMERA);
+                graph3D.calcCenters(subject);
                 graph3D.calcDistance(subject, WINDOW.CAMERA, 'distance');
-                graph3D.calcDistance(subject, LIGHT, 'lumen');
+                graph3D.calcDistance(subject, LIGHT, 'lumen');           
+            });
 
+            SCENE.forEach(subject => {
                 for (let i = 0; i < subject.polygons.length; i++) {
                     if (subject.polygons[i].visible) {
                         const polygon = subject.polygons[i];
@@ -226,7 +228,8 @@ window.onload = function () {
                         const point3 = graph3D.getProection(subject.points[polygon.points[2]]);
                         const point4 = graph3D.getProection(subject.points[polygon.points[3]]);
                         let { r, g, b } = polygon.color;
-                        const lumen = graph3D.calcIllumination(polygon.lumen, LIGHT.lumen);
+                        const {isShadow, dark} = graph3D.calcShadow(polygon, subject, SCENE, LIGHT);
+                        const lumen = (isShadow) ? dark : graph3D.calcIllumination(polygon.lumen, LIGHT.lumen);
                         r = Math.round(r * lumen);
                         g = Math.round(g * lumen);
                         b = Math.round(b * lumen);
