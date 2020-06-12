@@ -70,9 +70,9 @@ class Math3D {
             z: z0 + p * t,
         }
         return {
-            x: ps.x- A,
-            y: ps.y - B,
-            z: ps.z - C,  
+            x: ps.x, //- A,
+            y: ps.y, //- B,
+            z: ps.z //- C,  
         }
     }
 

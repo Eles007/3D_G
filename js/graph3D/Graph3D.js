@@ -5,7 +5,6 @@ class Graph3D {
     }
 
     // масштабирование точки
-
     zoomMatrix(delta) {
         this.math.transformMatrix([this.math.zoomMatrix(delta)]);
     }

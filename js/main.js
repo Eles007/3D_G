@@ -30,8 +30,8 @@ window.onload = function () {
     const ui = new UI({ callbacks: { move, printPoints, printEdges, printPolygons } });
 
 
-
-    const SCENE = [
+    const SCENE = [sur.spheraZACHET()]
+    /*const SCENE = [
         //солнце
         sur.sphera(
             30,
@@ -122,7 +122,7 @@ window.onload = function () {
             { rotateOz: new Point(0, 0, 0)}
         )
         
-    ];
+    ];*/
     const LIGHT = new Light(-100, 2, -10, 150000); //источник света
 
     let canRotate = 0;
@@ -213,7 +213,7 @@ window.onload = function () {
             const polygons = [];
 
             SCENE.forEach(subject => {
-                graph3D.calcGorner(subject, WINDOW.CAMERA);
+                //graph3D.calcGorner(subject, WINDOW.CAMERA);
                 graph3D.calcCenters(subject);
                 graph3D.calcDistance(subject, WINDOW.CAMERA, 'distance');
                 graph3D.calcDistance(subject, LIGHT, 'lumen');           
